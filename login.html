@@ -96,23 +96,24 @@
 <script src="assets/js/powerAPI.js" type="module"></script>
 <script src="assets/js/pages/login.js" type="module"></script>
 <script>
-// Basic anti-debugging
+// Mobile-friendly anti-debugging
 (function(){
-    const devtools = {
-        isOpen: false,
-        orientation: undefined
-    };
-    const threshold = 160;
+    // Only apply dimension checks on desktop
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
-    setInterval(() => {
-        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-        if(widthThreshold || heightThreshold) {
-            // Optionally redirect or disable functionality
-            window.location.href = "about:blank";
-        }
-    }, 1000);
+    if (!isMobile) {
+        const threshold = 160;
+        setInterval(() => {
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            if(widthThreshold || heightThreshold) {
+                // Instead of redirecting to about:blank, we'll just reload the page
+                window.location.reload();
+            }
+        }, 1000);
+    }
     
+    // These security measures work well on both mobile and desktop
     // Disable right-click
     document.addEventListener('contextmenu', e => e.preventDefault());
     
