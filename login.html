@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JH - Dashboard</title>
+
+    <!-- Favicon -->
+     <link rel="shortcut icon" href="assets/images/favicon.png">
+
+      <!-- Icons css  (Mandatory in All Pages) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App css  (Mandatory in All Pages) -->
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+    
+    <!-- Custom Style for Sidebar -->    <style>        html, body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('./assets/images/login-background.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+        body > div {
+            position: relative;
+            z-index: 1;
+        }    </style>
+</head>
+<body>    <!-- component -->
+<div class="w-full max-w-sm mx-auto px-4 sm:px-0">
+  <div class="w-full bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Dashboard Sign In</h2>
+    <img src="./assets/images/JH-logo-trans.png" class="p-6">    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">User ID</label>
+        <input 
+          type="text"
+          id="loginUserID"
+          name="userID"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+          placeholder="Enter user ID" id="user-id"
+          required
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input 
+          type="password" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+          placeholder="••••••••" id="password"
+          required
+        />
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="flex items-center">
+          <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+          <span class="ml-2 text-sm text-gray-600">Remember me</span>
+        </label>
+        <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+      </div>
+
+      <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors">
+        Sign In
+      </button>
+    </form>
+
+    <!-- <div class="mt-6 text-center text-sm text-gray-600">
+      Don't have an account? 
+      <a href="#" class="text-indigo-600 hover:text-indigo-500 font-medium">Sign up</a>
+    </div> -->  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="assets/libs/jquery/jquery.min.js"></script>
+<script src="assets/js/powerAPI.js" type="module"></script>
+<script src="assets/js/pages/login.js" type="module"></script>
+<script>
+// Mobile-friendly anti-debugging
+(function(){
+    // Only apply dimension checks on desktop
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (!isMobile) {
+        const threshold = 160;
+        setInterval(() => {
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            if(widthThreshold || heightThreshold) {
+                // Instead of redirecting to about:blank, we'll just reload the page
+                window.location.reload();
+            }
+        }, 1000);
+    }
+    
+    // These security measures work well on both mobile and desktop
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    
+    // Disable DevTools shortcuts
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+            (e.keyCode === 123)) { // F12
+            e.preventDefault();
+        }
+    });
+})();</script>
+</body>
+</html>

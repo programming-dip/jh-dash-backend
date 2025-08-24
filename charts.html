@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JH - Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <!-- CSS Files -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/libs/morris.js/morris.css">
+    
+    <!-- Plugin JS Files (Mandatory) -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/raphael/raphael.min.js"></script>
+    <script src="assets/libs/morris.js/morris.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+      <!-- Icons css  (Mandatory in All Pages) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App css  (Mandatory in All Pages) -->
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+    
+    <!-- Custom Style for Sidebar -->
+    <style>
+        #app-menu {
+            background-color: #1B0D48 !important;
+        }
+        
+        /* Chart Styles */
+        .morris-chart {
+            height: 350px !important;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgb(229 231 235);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: rgb(17 24 39);
+        }
+    </style>
+    <link rel="stylesheet" href="assets/libs/morris.js/morris.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar starts here -->
+         <aside id="app-menu"
+         class="hs-overlay fixed inset-y-0 start-0 z-60 hidden w-sidenav min-w-sidenav bg-slate-800 overflow-y-auto -translate-x-full transform transition-all duration-200 hs-overlay-open:translate-x-0 lg:bottom-0 lg:end-auto lg:z-30 lg:block lg:translate-x-0 rtl:translate-x-full rtl:hs-overlay-open:translate-x-0 rtl:lg:translate-x-0 print:hidden [--body-scroll:true] [--overlay-backdrop:true] lg:[--overlay-backdrop:false]">
+
+         <div class="flex flex-col h-full">
+            <!-- Slider Logo  -->
+            <div class="sticky top-0 flex h-topbar items-center justify-center px-6">
+                <a href="index.html">
+                    <img src="assets/images/sidenav-logo.png" alt="JH logo" class="flex h-16">
+                </a>
+            </div>
+
+            <div class="p-4 h-[calc(100%-theme('spacing.topbar'))] flex-grow" data-simplebar>
+                <!-- Menu -->
+                <ul class="admin-menu hs-accordion-group flex w-full flex-col gap-1">
+                    <li class="px-3 py-2 text-sm uppercase font-medium text-default-500">Menu</li>
+                
+                    <li class="menu-item hs-accordion">
+                        <a href="javascript:void(0)"
+                            class="hs-accordion-toggle group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5 hs-accordion-active:bg-default-100/5 hs-accordion-active:text-default-100">
+                            <i class="i-lucide-airplay size-5"></i>
+                            <span class="menu-text">Dashboard </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+
+                        <div class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300">
+                            <ul class="mt-1 space-y-1">
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-1.5 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                                        href="index.html">
+                                        <i class="menu-dot"></i>
+                                        Dashboard One
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li class="px-3 py-2 text-sm uppercase font-medium text-default-500">Apps</li>
+                    <li class="menu-item">
+                        <a class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="customers.html">
+                            <i class="i-lucide-user-circle size-5"></i>
+                            Customers
+                        </a>
+                    </li>
+                    
+                    <li class="menu-item hs-accordion">
+                        <a href="javascript:void(0)"
+                            class="hs-accordion-toggle group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5 hs-accordion-active:bg-default-100/5 hs-accordion-active:text-default-100">
+                            <i class="i-lucide-check-square size-5"></i>
+                            <span class="menu-text"> Forms </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+
+                        <div class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300">
+                            <ul class="mt-1 space-y-1">
+                                <li class="menu-item">
+                                    <a href="form-1.html"
+                                        class="flex items-center gap-x-3.5 rounded-md px-3 py-1.5 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5">
+                                        <i class="menu-dot"></i>
+                                        <span class="menu-text">Form-1</span>
+                                    </a>
+                                </li>
+                                <!-- More Form links goes here -->
+
+
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="tables.html"
+                            class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5 hs-accordion-active:bg-default-100/5 hs-accordion-active:text-default-100">
+                            <i class="i-lucide-table size-5"></i>
+                            <span class="menu-text"> Tables </span>
+                        </a>
+                    </li>
+
+
+                    <li class="menu-item">
+                        <a href="charts.html"
+                            class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5 hs-accordion-active:bg-default-100/5 hs-accordion-active:text-default-100">
+                            <i class="i-tabler-chart-donut-2 size-5"></i>
+                            <span class="menu-text"> Charts </span>
+                        </a>
+                    </li>
+
+                
+                </ul>     
+             </div>
+         </div>
+         </aside>
+         <!-- Sidebar ends here-->
+
+         <!-- Page Content Starts Here -->
+          <div class="page-content">
+              <!-- Topbar starts here -->
+              <header class="app-header sticky top-0 z-50 min-h-topbar flex items-center bg-white">
+                <div class="px-6 w-full flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-5">
+                        <!-- Sidenav Menu Toggle Button -->
+                        <button
+                            class="flex items-center text-default-500 rounded-full cursor-pointer p-2 bg-white border border-default-200 hover:bg-primary/15 hover:text-primary hover:border-primary/5 transition-all"
+                            data-hs-overlay="#app-menu" aria-label="Toggle navigation">
+                            <i class="i-lucide-align-left text-2xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-5">
+                        <!-- Generate Report Button -->
+                        <div class="md:flex hidden items-center">
+                            <a href="reports.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-all">
+                                <span>Generate Report</span>
+                                <i class="material-symbols-rounded text-2xl transition-all group-hover:fill-1">description</i>
+                            </a>
+                        </div>
+
+                        <!-- Fullscreen Toggle Button -->
+                        <div class="md:flex hidden">
+                            <button data-toggle="fullscreen" type="button"
+                                class="p-2 rounded-full bg-white border border-default-200 hover:bg-primary/15 hover:text-primary transition-all">
+                                <span class="sr-only">Fullscreen Mode</span>
+                                <span class="flex items-center justify-center size-6">
+                                    <i class="i-lucide-maximize text-2xl flex group-[-fullscreen]:hidden"></i>
+                                    <i class="i-lucide-minimize text-2xl hidden group-[-fullscreen]:flex"></i>
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <!-- Profile Dropdown Button -->
+                        <div class="relative">
+                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                <button type="button" class="hs-dropdown-toggle">
+                                    <img src="assets/images/favicon.png" alt="user-image" class="rounded-full h-10">
+                                </button>
+                                <div
+                                    class="hs-dropdown-menu duration mt-2 min-w-48 rounded-lg border border-default-200 bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 hidden">
+                                    <a class="flex items-center py-2 px-3 rounded-md text-sm text-default-800 hover:bg-default-100"
+                                        href="#">
+                                        Profile
+                                    </a>
+                                    
+
+                                    <hr class="my-2 -mx-2">
+
+                                    <a class="flex items-center py-2 px-3 rounded-md text-sm text-default-800 hover:bg-default-100"
+                                        href="#" id="logoutButton">
+                                        Log Out
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+              </header>
+               <!-- Topbar ends here -->
+
+               <main class="p-6">
+                    <div class="grid xl:grid-cols-2 gap-6">
+                        <!-- Income Type Distribution Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Income Type Distribution</h4>
+                                <p class="text-base text-default-500 mt-1">Highest income type: <span id="highIncomeType"><span>Loading...</span></span></p>
+                            </div>
+                            <div class="card-body">
+                                <div id="pie_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Gender Distribution Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Gender Distribution</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of clients by gender</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="gender_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Property Distribution Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Property Distribution</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of accommodations by property</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="property_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Total Occupancy Fee by Property Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Total Occupancy Fee by Property</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of total occupancy fees across properties. Highest: <span id="totalOccupancyFees">Loading...</span></p>
+                            </div>
+                            <div class="card-body">
+                                <div id="occupancy_fee_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Presenting Issues vs Nights Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Presenting Issues vs Nights Accommodated</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of nights accommodated by presenting issue</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="presenting_issues_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Exit Barriers vs Nights Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Exit Barriers vs Nights Accommodated</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of nights accommodated by exit barrier type</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="exit_barriers_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Homelessness History Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Homelessness History</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of occupancy fees by homelessness history in the last 2 years</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="homelessness_history_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Homelessness History vs Referrals Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Homelessness History vs Referrals</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of number of people referred by homelessness history in the last 2 years</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="homelessness_referrals_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tenancy Facilitation Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Tenancy Facilitation</h4>
+                                <p class="text-base text-default-500 mt-1">Distribution of number of people referred by tenancy facilitation provided</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="tenancy_facilitation_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Client Engagement Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Client Engagement with Referred People</h4>
+                                <p class="text-base text-default-500 mt-1">Most common response: <span id="clientEngagementSummary">Loading...</span></p>
+                            </div>
+                            <div class="card-body">
+                                <div id="client_engagement_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Type Distribution Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Payment Type Distribution</h4>
+                                <p class="text-base text-default-500 mt-1">Most common type: <span id="paymentTypeSummary">Loading...</span></p>
+                            </div>
+                            <div class="card-body">
+                                <div id="payment_type_chart" class="h-96"></div>
+                            </div>
+                        </div>
+
+                        <!-- Exit Status Distribution Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Exit Accommodation Status</h4>
+                                <p class="text-base text-default-500 mt-1">Most common status: <span id="exitStatusSummary">Loading...</span></p>
+                            </div>
+                            <div class="card-body">
+                                <div id="exit_status_chart" class="h-96"></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+               <!-- Footer Start -->
+            <footer class="footer bg-white flex items-center py-5">
+                <div class="px-6 flex md:justify-between justify-center w-full gap-4">
+                    <div>
+                        <script>document.write(new Date().getFullYear())</script> © Jewish House
+                    </div>
+                    <div class="md:flex hidden gap-2 item-center md:justify-end">
+                        Design &amp; Develop by<a href="#" class="text-primary">Anudip Bhoumik</a>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End -->
+          </div>
+    </div>
+
+    <!-- UI Plugin JS -->
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/libs/preline/preline.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/iconify-icon/iconify-icon.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+
+    <!-- App JS -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Charts Scripts -->
+    <script src="assets/js/powerAPI.js" type="module"></script>
+    <script src="assets/js/pages/charts.js" type="module"></script>
+</body>
+</html>

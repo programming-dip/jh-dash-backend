@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JH - Generate Report</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+
+    <!-- CSS Files -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/libs/morris.js/morris.css">
+
+    <!-- jsPDF and html2canvas for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!--  CryptoJS library for authentication -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+
+    <!-- Chart Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.44.0/apexcharts.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
+    <!-- Styles for Reports Page -->
+    <link rel="stylesheet" href="assets/css/reports.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Generate PDF Button -->
+        <button class="generate-pdf-btn" id="generatePdfBtn" onclick="generatePDF()">
+            📄 Generate PDF Report
+        </button>
+
+        <!-- Report Container -->
+        <div class="report-container" id="reportContainer">
+            <!-- Report Header -->
+            <div class="report-header flex flex-col items-center justify-center">
+                <a href="index.html"><img src="assets/images/JH-logo-trans.png" alt="JH Logo" style="height: 60px; margin-bottom: 1rem;"></a>
+                <h1 style="color: #1B0D48; margin: 0;">Monthly Dashboard Report</h1>
+                <p style="color: #6b7280; margin: 0.5rem 0 0 0;" id="reportDate">Report Generated: Loading...</p>
+            </div>
+
+            <!-- Executive Summary -->
+            <div class="report-section">
+                <h2 class="section-title">Executive Summary</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="summary-clients">-</div>
+                        <div class="metric-label">Total Clients Served</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="summary-revenue">-</div>
+                        <div class="metric-label">Total Revenue Generated</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="summary-nights">-</div>
+                        <div class="metric-label">Total Nights Accommodated</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="summary-avg-cost">-</div>
+                        <div class="metric-label">Average Cost Per Night</div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Income Distribution -->
+            <div class="report-section">
+                <h2 class="section-title">Income Type Distribution</h2>
+                <p class="chart-description">Distribution of total occupancy fees by income type of clients</p>
+                <div class="chart-container" id="income-chart-container">
+                    <div id="report-income-chart"></div>
+                </div>
+            </div>
+
+            <!-- Demographics -->
+            <div class="report-section">
+                <h2 class="section-title">Client Demographics</h2>
+                <p class="chart-description">Gender distribution of all clients served</p>
+                <div class="chart-container" id="gender-chart-container">
+                    <div id="report-gender-chart"></div>
+                </div>
+            </div>
+
+            <!-- Property Performance -->
+            <div class="report-section">
+                <h2 class="section-title">Property Performance</h2>
+                <p class="chart-description">Accommodation nights and revenue distribution across properties</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Nights by Property</h4>
+                        <div id="report-property-chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Revenue by Property</h4>
+                        <div id="report-occupancy-fee-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Issues Analysis -->
+            <div class="report-section">
+                <h2 class="section-title">Client Issues Analysis</h2>
+                <p class="chart-description">Analysis of presenting issues and barriers faced by clients</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Presenting Issues</h4>
+                        <div id="report-presenting-issues-chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Exit Barriers</h4>
+                        <div id="report-exit-barriers-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Homelessness Analysis -->
+            <div class="report-section">
+                <h2 class="section-title">Homelessness History Analysis</h2>
+                <p class="chart-description">Analysis of clients' homelessness history and referral patterns</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Homelessness History (Fees)</h4>
+                        <div id="report-homelessness-chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Homelessness History (Referrals)</h4>
+                        <div id="report-homelessness-referrals-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Provision -->
+            <div class="report-section">
+                <h2 class="section-title">Service Provision Analysis</h2>
+                <p class="chart-description">Analysis of services provided and client engagement</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Tenancy Facilitation</h4>
+                        <div id="report-tenancy-chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Client Engagement</h4>
+                        <div id="report-engagement-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Analysis -->
+            <div class="report-section">
+                <h2 class="section-title">Financial & Exit Analysis</h2>
+                <p class="chart-description">Payment patterns and exit status distribution</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Payment Type Distribution</h4>
+                        <div id="report-payment-chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4 style="margin: 0 0 1rem 0; color: #374151;">Exit Status</h4>
+                        <div id="report-exit-status-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Footer -->
+            <div
+                style="text-align: center; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 2rem; color: #6b7280; font-size: 0.875rem;">
+                <p>This report was automatically generated from Jewish House accommodation data.</p>
+                <p>© <span id="currentYear"></span> Jewish House - All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Scripts -->
+    <script src="assets/js/pages/charts.js" type="module"></script>
+
+    <!-- Reports Page Script -->
+    <script src="assets/js/pages/reports.js" type="module"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+{
+  "name": "JH Dashboard Design",
+  "type": "figma",
+  "version": "1.0",
+  "components": {
+    "sidebar": {
+      "width": 280,
+      "height": "100vh",
+      "backgroundColor": "#1e293b",
+      "children": [
+        {
+          "type": "logo",
+          "x": 24,
+          "y": 24,
+          "width": 120,
+          "height": 48
+        },
+        {
+          "type": "menu",
+          "x": 16,
+          "y": 96,
+          "items": [
+            {
+              "text": "Dashboard",
+              "icon": "airplay",
+              "color": "#94a3b8"
+            },
+            {
+              "text": "Customers",
+              "icon": "user-circle",
+              "color": "#94a3b8"
+            },
+            {
+              "text": "Forms",
+              "icon": "check-square",
+              "color": "#94a3b8"
+            },
+            {
+              "text": "Tables",
+              "icon": "table",
+              "color": "#94a3b8"
+            },
+            {
+              "text": "Charts",
+              "icon": "chart-donut",
+              "color": "#94a3b8"
+            }
+          ]
+        }
+      ]
+    },
+    "header": {
+      "height": 64,
+      "backgroundColor": "#ffffff",
+      "children": [
+        {
+          "type": "menu-toggle",
+          "x": 24,
+          "y": 12,
+          "width": 40,
+          "height": 40
+        },
+        {
+          "type": "search",
+          "x": 80,
+          "y": 12,
+          "width": 320,
+          "height": 40,
+          "placeholder": "Search..."
+        },
+        {
+          "type": "profile",
+          "x": "auto",
+          "y": 12,
+          "width": 40,
+          "height": 40
+        }
+      ]
+    },
+    "main-content": {
+      "padding": 24,
+      "children": [
+        {
+          "type": "page-title",
+          "text": "Dashboard",
+          "breadcrumb": ["Jewish House", "Menu", "Dashboard"]
+        },
+        {
+          "type": "stats-grid",
+          "columns": 4,
+          "gap": 24,
+          "children": [
+            {
+              "title": "Total Clients Served",
+              "value": "1234",
+              "icon": "group",
+              "color": "#3b82f6"
+            },
+            {
+              "title": "Total Revenue Generated",
+              "value": "$1234.12",
+              "icon": "payments",
+              "color": "#10b981"
+            },
+            {
+              "title": "Average Cost Per Night",
+              "value": "$123",
+              "icon": "bed",
+              "color": "#8b5cf6"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "colors": {
+    "primary": "#3b82f6",
+    "secondary": "#10b981",
+    "accent": "#8b5cf6",
+    "background": "#f8fafc",
+    "text": {
+      "primary": "#1e293b",
+      "secondary": "#64748b"
+    }
+  },
+  "typography": {
+    "fontFamily": "Inter",
+    "sizes": {
+      "h1": "24px",
+      "h2": "20px",
+      "h3": "18px",
+      "body": "14px",
+      "small": "12px"
+    }
+  }
+} 

@@ -1,0 +1,279 @@
+
+#app-menu {
+    background-color: #1B0D48 !important;
+}
+
+.report-container {
+    background: white;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-header {
+    text-align: center;
+    border-bottom: 2px solid #1B0D48;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.report-section {
+    margin-bottom: 3rem;
+    page-break-inside: avoid;
+}
+
+/* Enhanced chart styling - Fixed for proper chart fitting */
+.chart-container {
+    height: auto !important; /* Remove fixed height */
+    min-height: 450px; /* Increased minimum height */
+    margin: 1rem 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: visible; /* Allow content to expand */
+    position: relative;
+}
+
+/* Specific styling for chart containers */
+#income-chart-container,
+#gender-chart-container,
+#income-chart-container .chart-container,
+#gender-chart-container .chart-container {
+    height: auto !important;
+    min-height: 500px;
+    overflow: visible;
+}
+
+/* CanvasJS chart container styling */
+#report-income-chart,
+#report-gender-chart,
+#report-payment-chart {
+    height: auto !important;
+    min-height: 500px;
+    overflow: visible;
+}
+
+/* Morris.js chart container styling */
+#report-property-chart,
+#report-occupancy-fee-chart,
+#report-presenting-issues-chart,
+#report-exit-barriers-chart,
+#report-homelessness-chart,
+#report-homelessness-referrals-chart,
+#report-tenancy-chart,
+#report-engagement-chart,
+#report-exit-status-chart {
+    height: auto !important;
+    min-height: 400px;
+    overflow: visible;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #1B0D48;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1B0D48;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.generate-pdf-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: linear-gradient(135deg, #1B0D48 0%, #2d1a5e 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(27, 13, 72, 0.3);
+    transition: all 0.3s ease;
+}
+
+.generate-pdf-btn:hover {
+    background: linear-gradient(135deg, #2d1a5e 0%, #1B0D48 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 13, 72, 0.4);
+}
+
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.section-title {
+    color: #1B0D48;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #1B0D48;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #00c2b2, #f3b600);
+}
+
+.chart-description {
+    font-size: 1rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    font-style: normal;
+    line-height: 1.6;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    border-left: 4px solid #1B0D48;
+}
+
+/* Enhanced table styling for chart data */
+.chart-container table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.chart-container th,
+.chart-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.chart-container th {
+    background-color: #1B0D48;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.875rem;
+}
+
+.chart-container tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.chart-container tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Enhanced donut chart labels */
+.chart-container .donut-labels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.chart-container .donut-label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 2px solid;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.chart-container .donut-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .report-container {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+    
+    .report-section {
+        padding: 1rem;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+        padding: 1rem;
+        min-height: 350px;
+    }
+}
+
+@media print {
+    .generate-pdf-btn {
+        display: none;
+    }
+
+    .report-container {
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .report-section {
+        page-break-inside: avoid;
+    }
+
+    .chart-container {
+        page-break-inside: avoid;
+        height: auto !important;
+    }
+}
+
+/* Hide CanvasJS watermark */
+.canvasjs-chart-credit {
+    display: none !important;
+}
+
+/* Alternative selectors to try if the above doesn't work */
+[id*="canvasjs"] .canvasjs-chart-credit,
+.canvasjs-chart-container .canvasjs-chart-credit,
+div[class*="canvasjs-chart-credit"] {
+    display: none !important;
+}
